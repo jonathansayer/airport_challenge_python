@@ -14,8 +14,16 @@ class AirportTest(unittest.TestCase):
     def test_airport_land_plane(self):
         airport = Airport()
         plane = Mock()
-        airport.land(plane)
-        assetEqual(airport.planes,[plane])
+        airport.land_plane(plane)
+        self.assertTrue(plane.land())
+
+    def test_airport_storing_planes(self):
+        airport = Airport()
+        plane = Mock()
+        airport.land_plane(plane)
+        self.assertEqual(airport.planes,[plane])
+
+
 
 
 if __name__ == '__main__':
