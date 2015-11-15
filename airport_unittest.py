@@ -26,16 +26,27 @@ class AirportTest(unittest.TestCase):
     def test_airport_take_off_plane(self):
         airport = Airport()
         plane = Mock()
+        weather = Mock()
+        weather.stormy.return_value = False
         airport.planes = [plane]
-        airport.release_plane(plane)
+        airport.release_plane(plane,weather)
         plane.take_off.assert_called_once_with()
 
     def test_airport_release_plane(self):
         airport = Airport()
         plane = Mock()
+        weather = Mock()
+        weather.stormy.return_value = False
         airport.land_plane(plane)
-        airport.release_plane(plane)
+        airport.release_plane(plane,weather)
         self.assertEqual(airport.planes,[])
+
+    def test_stormy_weather(self):
+        airport = Airport()
+        plane = Mock()
+        weather = Mock(stormy=True)
+        airport.planes = [plane]
+        self.assertEqual(airport.release_plane(plane,weather), "Weather is Stormy")
 
 
 if __name__ == '__main__':
