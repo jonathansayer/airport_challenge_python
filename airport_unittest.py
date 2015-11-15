@@ -15,7 +15,7 @@ class AirportTest(unittest.TestCase):
         airport = Airport()
         plane = Mock()
         airport.land_plane(plane)
-        self.assertTrue(plane.land())
+        plane.land.assert_called_once_with()
 
     def test_airport_storing_planes(self):
         airport = Airport()
@@ -23,7 +23,19 @@ class AirportTest(unittest.TestCase):
         airport.land_plane(plane)
         self.assertEqual(airport.planes,[plane])
 
+    def test_airport_take_off_plane(self):
+        airport = Airport()
+        plane = Mock()
+        airport.planes = [plane]
+        airport.release_plane(plane)
+        plane.take_off.assert_called_once_with()
 
+    def test_airport_release_plane(self):
+        airport = Airport()
+        plane = Mock()
+        airport.land_plane(plane)
+        airport.release_plane(plane)
+        self.assertEqual(airport.planes,[])
 
 
 if __name__ == '__main__':
