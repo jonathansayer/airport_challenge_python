@@ -10,9 +10,10 @@ class WeatherTest(unittest.TestCase):
 
     def test_nice_weather(self):
         weather = Weather()
-        random.seed(79)
-        self.assertEqual(weather.stormy(),False)
-
+        if weather.generator() <= 80:
+            self.assertEqual(weather.stormy(), False)
+        elif weather.generator() > 80:
+            self.assertEqual(weather.stormy(),True)
 
 
 if __name__ == '__main__':
