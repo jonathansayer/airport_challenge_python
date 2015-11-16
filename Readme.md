@@ -70,3 +70,9 @@ On occasion a storm may take hold making in impossible for an airport to take in
       => "The storm has made it impossible to land"  
 ```
 If a storm is in town, planes cannot take off.
+
+To run the tests, choose the test file and run using python, for example:
+
+```
+$ python airport_unittest.py
+```
